@@ -31,9 +31,16 @@ func main() {
 
 		columns := []string{}
 		// generate columns
-		for k := range data[0] {
-			fmt.Printf(" --column=\"%s\"", k)
-			columns = append(columns, k)
+		if len(os.Args) > 2 {
+			for _, k := range os.Args[2:] {
+				fmt.Printf(" --column=%s", k)
+				columns = append(columns, k)
+			}
+		} else {
+			for k := range data[0] {
+				fmt.Printf(" --column=%s", k)
+				columns = append(columns, k)
+			}
 		}
 
 		// generate data
@@ -42,7 +49,7 @@ func main() {
 				s := string(d[c])
 				s = strings.TrimSuffix(s, "\"")
 				s = strings.TrimPrefix(s, "\"")
-				fmt.Printf(" \"%s\"", s)
+				fmt.Printf(" %s", s)
 			}
 		}
 	}
