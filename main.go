@@ -49,6 +49,8 @@ func main() {
 				s := string(d[c])
 				s = strings.TrimSuffix(s, "\"")
 				s = strings.TrimPrefix(s, "\"")
+
+				s = strings.ReplaceAll(s, " ", "\\ ")
 				fmt.Printf(" %s", s)
 			}
 		}
